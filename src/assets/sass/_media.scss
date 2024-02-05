@@ -28,7 +28,7 @@
         @content;
       }
     } @else {
-      @media ($point) {
+      @media (max-width: $point) {
         @content;
       }
     }
