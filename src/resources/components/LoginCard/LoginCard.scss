@@ -1,0 +1,38 @@
+@import "@/assets/sass/variable";
+@import "@/assets/sass/media";
+
+.login-card-parent {
+  flex-direction: row;
+
+  .login-card-right {
+    flex: 0.5;
+    padding: 2em 1em;
+
+    .text-input-style {
+      padding: 0;
+    }
+  }
+  .login-card-left {
+    flex: 0.5;
+    background-color: $main-color;
+    padding: 2em 1em;
+
+    .text-rules {
+      font-size: 13px;
+      text-align: center;
+      margin-top: 5em;
+    }
+
+    .text-color {
+      color: white;
+    }
+  }
+}
+
+/* responsive */
+
+@include breakpoint(700px) {
+  .login-card-parent {
+    flex-direction: column;
+  }
+}
