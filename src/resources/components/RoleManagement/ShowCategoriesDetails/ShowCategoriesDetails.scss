@@ -1,0 +1,44 @@
+.parent-show-selected-categories--buttons {
+  .parent-show-selected-categories {
+    .show-selected-categories-title {
+      .chevron-down-style {
+        cursor: pointer;
+      }
+
+      .line {
+        height: 1px;
+        background-color: #ced1d4;
+        width: 20%;
+      }
+
+      .parent-radio-text {
+        font-size: 12px;
+
+        .custom-radio-label {
+          font-size: 1۴px;
+        }
+      }
+    }
+
+    .show-selected-categories-details {
+      .ul-style {
+        flex-wrap: wrap;
+
+        .li-style {
+          color: #b6b6b6;
+          line-height: 3;
+          text-align: center;
+          list-style: none;
+        }
+      }
+    }
+
+    .hide-details {
+      display: none !important;
+    }
+
+    .show-details {
+      display: flex;
+    }
+  }
+}

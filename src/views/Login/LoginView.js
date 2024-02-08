@@ -1,4 +1,4 @@
-import LoginCard from "@/resources/components/LoginCard/LoginCard.vue";
+import LoginCard from "@/resources/components/Login/LoginCard/LoginCard.vue";
 export default {
   components: {
     LoginCard,

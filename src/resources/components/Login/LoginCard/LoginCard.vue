@@ -27,7 +27,10 @@
         ></v-text-field>
       </div>
 
-      <v-btn color="#3e2356" :disabled="username == '' || password == ''"
+      <v-btn
+        color="#3e2356"
+        :disabled="username == '' || password == ''"
+        @click="$router.push({ name: 'addRole' })"
         >ورود</v-btn
       >
     </div>
@@ -52,5 +55,5 @@
   </v-card>
 </template>
 
-<style src="./LoginCard.scss" lang="scss"></style>
+<style src="./LoginCard.scss" lang="scss" scoped></style>
 <script src="./LoginCard.js"></script>

@@ -1,0 +1,42 @@
+.down-page-content {
+  .parent-panel-box--categories-box {
+    //start parent-categories-box
+    .parent-categories-box {
+      flex: 0.75;
+      background-color: #f9f9f9;
+      border: 1px solid #ced1d4;
+      padding: 10px 1em;
+      margin-left: 1em;
+      margin-right: 3em;
+      border-radius: 3px;
+      height: max-content;
+
+      .parent-search-text-input {
+        .v-text-field.search-input-style .v-input__control input {
+          font-size: 8px; // Adjust the font size as needed
+        }
+      }
+      .parent-categories-checkbox {
+        .parent-each-checkbox-row {
+          .custom-row {
+            .v-expansion-panel-title {
+              padding: 0;
+
+              .v-input__details {
+                display: none !important;
+              }
+            }
+
+            .v-expansion-panel-title--active {
+              .v-expansion-panel-title__overlay {
+                opacity: 0 !important;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    //end parent-categories-box
+  }
+}

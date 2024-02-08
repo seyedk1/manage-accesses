@@ -8,6 +8,11 @@
     flex: 0.5;
     padding: 2em 1em;
 
+    .parent-login-icon {
+      .login-text {
+        color: #7a7a7a;
+      }
+    }
     .text-input-style {
       padding: 0;
     }
