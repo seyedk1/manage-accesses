@@ -1,0 +1,31 @@
+@import "@/assets/sass/variable";
+.add-role-page-container {
+  .up-page-content {
+    .parent-title-icon--text-input {
+      flex: 0.8;
+
+      .parent-title-icon {
+        flex: 0.3;
+        color: #ced1d4;
+
+        .icon-style {
+          background-color: #f9f9f9;
+          border: 1px solid #ced1d4;
+          border-radius: 5px;
+          margin-left: 3px;
+        }
+
+        .title-style {
+          .active {
+            color: $main-color;
+          }
+        }
+      }
+
+      .parent-text-inputs {
+        flex: 0.6;
+        margin-top: 1em;
+      }
+    }
+  }
+}

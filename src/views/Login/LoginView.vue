@@ -6,5 +6,5 @@
   </div>
 </template>
 
-<style src="./LoginView.scss" lang="scss"></style>
+<style src="./LoginView.scss" lang="scss" scoped></style>
 <script src="./LoginView.js"></script>

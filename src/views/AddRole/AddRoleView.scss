@@ -1,0 +1,23 @@
+.add-role-page-container {
+  margin-top: 5em;
+
+  .up-page-content {
+  }
+
+  .down-page-content {
+    .parent-panel-box--categories-box {
+      flex: 0.45;
+      justify-content: space-between;
+    }
+
+    .parent-show-selected-categories--buttons {
+      flex: 0.55;
+
+      .parent-buttons {
+        .btn-style {
+          font-family: IRANSans;
+        }
+      }
+    }
+  }
+}

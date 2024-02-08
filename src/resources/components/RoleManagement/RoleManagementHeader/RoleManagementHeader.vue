@@ -1,0 +1,45 @@
+<template>
+  <div class="parent-title-icon--text-input d-flex align-items-center">
+    <div class="parent-title-icon d-flex">
+      <svg-icon type="mdi" :path="path" class="icon-style"></svg-icon>
+      <p class="title-style mr-1">
+        لیست نقش ها / <span class="active">افزودن نقش</span>
+      </p>
+    </div>
+
+    <div class="parent-text-inputs d-flex">
+      <v-text-field
+        density="compact"
+        label="نام نقش"
+        variant="outlined"
+        single-line
+        class="text-input-style ml-2"
+        bg-color="#f9f9f9"
+        color="#ced1d4"
+        base-color="#ced1d4"
+      ></v-text-field>
+      <v-text-field
+        density="compact"
+        label="توضیحات"
+        single-line
+        variant="outlined"
+        class="text-input-style"
+        bg-color="#f9f9f9"
+        color="#ced1d4"
+        base-color="#ced1d4"
+      ></v-text-field>
+    </div>
+  </div>
+
+  <div class="parent-toggle-activate d-inline-block">
+    <v-switch
+      label="غیر فعال"
+      color="#3e2356"
+      value="success"
+      hide-details
+    ></v-switch>
+  </div>
+</template>
+
+<style src="./RoleManagementHeader.scss" lang="scss" scoped></style>
+<script src="./RoleManagementHeader.js"></script>

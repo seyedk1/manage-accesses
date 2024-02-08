@@ -1,0 +1,20 @@
+.down-page-content {
+  .parent-panel-box--categories-box {
+    .parent-panel-box {
+      .each-panel-box {
+        background-color: #eceaef;
+        padding: 15px 8px 15px 7em;
+        position: relative;
+
+        .triangle {
+          position: absolute;
+          border-top: 29px solid transparent;
+          border-right: 35px solid #eceaef;
+          border-bottom: 26px solid transparent;
+          right: 9.7em;
+          margin-top: -16px;
+        }
+      }
+    }
+  }
+}
