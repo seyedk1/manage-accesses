@@ -3,6 +3,7 @@ import {
   getAllPanels,
   getAllCategories,
   getAllActions,
+  addRoleToDb,
 } from "@/service/accessManagementService";
 export const useAccessManagementStore = defineStore("accessManagement", {
   state: () => ({
@@ -11,6 +12,12 @@ export const useAccessManagementStore = defineStore("accessManagement", {
     panels: [],
     categories: [],
     actions: [],
+    rolePaylod: {
+      name: "",
+      description: "",
+      active: false,
+      actionsId: [],
+    },
   }),
 
   getters: {
@@ -19,9 +26,21 @@ export const useAccessManagementStore = defineStore("accessManagement", {
     get_panels: (state) => state.panels,
     get_categories: (state) => state.categories,
     get_actions: (state) => state.actions,
+    get_role_paylod: (state) => state.rolePaylod,
   },
 
   actions: {
+    filter_level_access_action(obj) {
+      console.log("{levelAccess, actionData}: ", obj);
+      console.log("just levelAccess: ", JSON.parse(obj).levelAccess);
+      const filteredActions = JSON.parse(obj).actionData.filter(
+        (action) => action.level >= JSON.parse(obj).levelAccess
+      );
+      console.log("res bade filter: ", filteredActions);
+      let actionsId = [];
+      filteredActions.map((el) => actionsId.push(el._id));
+      return actionsId;
+    },
     set_select_panel_action(productId) {
       return (this.selectedPanel = productId);
     },
@@ -129,6 +148,16 @@ export const useAccessManagementStore = defineStore("accessManagement", {
       }, []);
 
       return transformedArray;
+    },
+
+    async add_role_paylod_action(data) {
+      try {
+        const res = await addRoleToDb(data);
+        console.log("result for add role in action: ", res);
+        return true;
+      } catch (err) {
+        console.log("err in add_role_paylod: ", err);
+      }
     },
   },
 });
