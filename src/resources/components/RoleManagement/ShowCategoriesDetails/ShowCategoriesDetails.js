@@ -1,6 +1,7 @@
+import { useAccessManagementStore } from "@/stores/accessManagementStore";
 import SvgIcon from "@jamescoyle/vue-icon";
 import { mdiChevronDown } from "@mdi/js";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 export default {
   components: {
@@ -8,6 +9,7 @@ export default {
   },
 
   setup() {
+    const store = useAccessManagementStore();
     const chevronPath = ref(mdiChevronDown);
     let flag = ref(Array(4).fill(true));
 
@@ -21,6 +23,8 @@ export default {
       chevronPath,
       flag,
       displayDetails,
+      // showActions,
+      store
     };
   },
 };

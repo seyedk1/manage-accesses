@@ -1,17 +1,24 @@
 <template>
+  <template v-if="store.get_actions.length == 0">
+    <div class="d-flex flex-grow-1 justify-content-center no-found-style">
+      <img src="@/assets/images/no-found.gif" alt="پیدا نشدن" class="w-25" />
+    </div>
+  </template>
+
   <div
+    v-else
     class="parent-show-selected-categories d-flex flex-column my-4"
-    v-for="i in 4"
+    v-for="(item, i) in store.get_actions"
     :key="i"
   >
     <div
       class="show-selected-categories-title d-flex flex-grow-1 align-items-center"
     >
-      <span>دسته بندی {{ i }}</span>
+      <span> {{ item.categoryName }} </span>
       <svg-icon
         type="mdi"
         :path="chevronPath"
-        @click="displayDetails(i - 1)"
+        @click="displayDetails(i)"
         class="chevron-down-style"
       ></svg-icon>
       <span class="line"></span>
@@ -37,8 +44,14 @@
       class="show-selected-categories-details d-flex"
       :class="flag[i] ? 'hide-details' : 'show-details'"
     >
-      <ul class="ul-style d-flex">
-        <li v-for="j in 12" class="li-style col-md-4">دسترسی {{ j }}</li>
+      <ul class="ul-style d-flex flex-grow-1">
+        <li
+          v-for="(action, j) in item.actionsData"
+          :key="j"
+          class="li-style col-md-4"
+        >
+          {{ action.name }}
+        </li>
       </ul>
     </div>
   </div>
