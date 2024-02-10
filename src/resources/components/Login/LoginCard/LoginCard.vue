@@ -30,7 +30,7 @@
       <v-btn
         color="#3e2356"
         :disabled="username == '' || password == ''"
-        @click="$router.push({ name: 'addRole' })"
+        @click="login(username, password)"
         >ورود</v-btn
       >
     </div>
