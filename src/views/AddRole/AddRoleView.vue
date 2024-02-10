@@ -9,9 +9,9 @@
     <div class="down-page-content d-flex">
       <!--start parent-panel-box--categories-box-->
       <div class="parent-panel-box--categories-box d-flex">
-        <PanelManagement />
-
-        <SearchTitleAccess />
+        <PanelManagement :products="store.get_panels" />
+        
+        <SearchTitleAccess :categories="store.get_categories" />
       </div>
       <!--end parent-panel-box--categories-box-->
 

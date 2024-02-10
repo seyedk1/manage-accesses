@@ -1,4 +1,12 @@
+@import "@/assets/sass/variable.scss";
+
 .parent-show-selected-categories--buttons {
+  .no-found-style {
+    background-color: $athens-gray;
+    padding: 20px 0;
+    max-height: 200px;
+  }
+
   .parent-show-selected-categories {
     .show-selected-categories-title {
       .chevron-down-style {
