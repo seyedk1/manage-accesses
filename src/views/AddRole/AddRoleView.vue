@@ -10,7 +10,7 @@
       <!--start parent-panel-box--categories-box-->
       <div class="parent-panel-box--categories-box d-flex">
         <PanelManagement :products="store.get_panels" />
-        
+
         <SearchTitleAccess :categories="store.get_categories" />
       </div>
       <!--end parent-panel-box--categories-box-->
@@ -20,7 +20,18 @@
         <ShowCategoriesDetails />
 
         <div class="parent-buttons d-flex flex-grow-1 justify-content-end my-5">
-          <v-btn class="btn-style mx-1" color="#3e2356">ثبت</v-btn>
+          <v-btn
+            class="btn-style mx-1"
+            color="#3e2356"
+            :disabled="
+              store.get_role_paylod.name == '' ||
+              store.get_role_paylod.actionsId.length == 0
+                ? true
+                : false
+            "
+            @click="addRoleToDatabase()"
+            >ثبت</v-btn
+          >
           <v-btn class="btn-style mx-1" color="#3e2356" variant="outlined"
             >بازگشت</v-btn
           >

@@ -11,6 +11,7 @@
       <v-text-field
         density="compact"
         label="نام نقش"
+        v-model="store.get_role_paylod.name"
         variant="outlined"
         single-line
         class="text-input-style ml-2"
@@ -21,6 +22,7 @@
       <v-text-field
         density="compact"
         label="توضیحات"
+        v-model="store.get_role_paylod.description"
         single-line
         variant="outlined"
         class="text-input-style"
@@ -34,8 +36,9 @@
   <div class="parent-toggle-activate d-inline-block">
     <v-switch
       label="غیر فعال"
+      v-model="activeFlag"
       color="#3e2356"
-      value="success"
+      :value="true"
       hide-details
     ></v-switch>
   </div>

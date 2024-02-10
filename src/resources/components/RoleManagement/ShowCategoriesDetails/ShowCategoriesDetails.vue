@@ -22,27 +22,29 @@
         class="chevron-down-style"
       ></svg-icon>
       <span class="line"></span>
-      <v-radio-group inline color="#3e2356" hide-details>
-        <v-radio value="100" class="parent-radio-text">
+
+      <v-radio-group
+        inline
+        color="#3e2356"
+        v-model="selectedRadioBtns[i]"
+        hide-details
+      >
+        <v-radio
+          :value="{ levelAccess: radioBtn.value, actionData: item.actionsData }"
+          class="parent-radio-text"
+          @click="handleRadioClick(i)"
+          v-for="(radioBtn, k) in radioBtns"
+          :key="k"
+        >
           <template v-slot:label>
-            <span class="custom-radio-label"> دسترسی انتشار </span>
-          </template>
-        </v-radio>
-        <v-radio value="200" class="parent-radio-text">
-          <template v-slot:label>
-            <span class="custom-radio-label"> دسترسی ویرایش </span>
-          </template>
-        </v-radio>
-        <v-radio value="300" class="parent-radio-text">
-          <template v-slot:label>
-            <span class="custom-radio-label"> دسترسی مشاهده </span>
+            <span class="custom-radio-label"> {{ radioBtn.text }} </span>
           </template>
         </v-radio>
       </v-radio-group>
     </div>
     <div
       class="show-selected-categories-details d-flex"
-      :class="flag[i] ? 'hide-details' : 'show-details'"
+      :class="displayDetailsFlag[i] ? 'show-details' : 'hide-details'"
     >
       <ul class="ul-style d-flex flex-grow-1">
         <li
