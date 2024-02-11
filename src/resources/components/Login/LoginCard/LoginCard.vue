@@ -14,13 +14,15 @@
         <v-text-field
           density="compact"
           label="نام کاربری"
+          :rules="[rules.required, rules.counter]"
           variant="outlined"
-          class="text-input-style"
+          class="text-input-style my-3"
           v-model="username"
         ></v-text-field>
         <v-text-field
           density="compact"
           label="رمز عبور"
+          :rules="[rules.required, rules.counter]"
           variant="outlined"
           class="text-input-style"
           v-model="password"
@@ -29,8 +31,8 @@
 
       <v-btn
         color="#3e2356"
-        :disabled="username == '' || password == ''"
-        @click="login(username, password)"
+        :disabled="username.length > 2 && password.length > 2 ? false : true"
+        @click="login(username)"
         >ورود</v-btn
       >
     </div>

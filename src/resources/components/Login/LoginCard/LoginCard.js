@@ -2,8 +2,8 @@ import BadesabaIcon from "@/assets/images/badesaba_icon.svg";
 import { ref } from "vue";
 import SvgIcon from "@jamescoyle/vue-icon";
 import { mdiLoginVariant } from "@mdi/js";
-import { generateToken } from "@/service/accessManagementService";
 import { useRouter } from "vue-router";
+import { useAccessManagementStore } from "@/stores/accessManagementStore";
 
 export default {
   components: {
@@ -11,15 +11,23 @@ export default {
     SvgIcon,
   },
   setup() {
+    const store = useAccessManagementStore();
+    const { login_action } = store;
     const router = useRouter();
+
     let username = ref("");
     let password = ref("");
+
+    const rules = ref({
+      required: (value) => !!value || "الزامی",
+      counter: (value) => (value && value.length >= 3) || "حداقل ۳ کاراکتر",
+    });
+
     const path = ref(mdiLoginVariant);
 
-    const login = (username, password) => {
-      const token = generateToken(username, password);
-      localStorage.setItem("token", token);
-      router.push({ name: "addRole" });
+    const login = async (username) => {
+      await login_action(username);
+      router.replace({ name: "addRole" });
     };
 
     return {
@@ -27,6 +35,7 @@ export default {
       password,
       path,
       login,
+      rules,
     };
   },
 };

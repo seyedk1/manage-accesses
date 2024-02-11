@@ -1,10 +1,6 @@
 import axios from "axios";
 const SERVER_URL = "http://localhost:9000";
 
-export const generateToken = (username, password) => {
-  const token = `${username}${password}_static_token_${Date.now()}`;
-  return token;
-};
 // @desc get all panels
 // @route GET http://localhost:9000/products
 export const getAllPanels = () => {

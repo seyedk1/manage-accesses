@@ -1,10 +1,12 @@
+@import "@/assets/sass/variable";
+
 .down-page-content {
   .parent-panel-box--categories-box {
     //start parent-categories-box
     .parent-categories-box {
       flex: 0.75;
-      background-color: #f9f9f9;
-      border: 1px solid #ced1d4;
+      background-color: $alabaster;
+      border: 1px solid $iron;
       padding: 10px 10px;
       margin-left: 1em;
       margin-right: 3em;
@@ -18,8 +20,8 @@
       }
       .parent-categories-checkbox {
         .parent-each-checkbox-row {
-          .custom-style{
-            .v-expansion-panel-text__wrapper{
+          .custom-style {
+            .v-expansion-panel-text__wrapper {
               padding: 0 !important;
             }
           }
