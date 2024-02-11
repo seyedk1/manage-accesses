@@ -13,12 +13,27 @@ export const routes = [
     path: "/login",
     name: "login",
     component: LoginView,
+    beforeEnter(to, from, next) {
+      console.log("to, from: ", { to, from });
+      const token = localStorage.getItem("token");
+
+      if (!!token) {
+        console.log("chishod: ", !!token);
+        next({ name: "addRole" });
+      } else {
+        console.log("else yani: ", !!token);
+        next();
+      }
+    },
   },
 
   // Add Role Page
   {
     path: "/add-role",
     name: "addRole",
+    meta: {
+      requiresAuth: true,
+    },
     // route level code-splitting
     // this generates a separate chunk (addRole.[hash].js) for this route
     // which is lazy-loaded when the route is visited.

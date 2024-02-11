@@ -6,11 +6,11 @@
 
       .parent-title-icon {
         flex: 0.3;
-        color: #ced1d4;
+        color: $iron;
 
         .icon-style {
-          background-color: #f9f9f9;
-          border: 1px solid #ced1d4;
+          background-color: $alabaster;
+          border: 1px solid $iron;
           border-radius: 5px;
           margin-left: 3px;
         }

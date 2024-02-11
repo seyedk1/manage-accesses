@@ -1,0 +1,18 @@
+@import "@/assets/sass/variable.scss";
+@import "@/assets/sass/media";
+
+.parent-not-found {
+  .parent-img {
+    padding: 10px;
+    background-color: $athens-gray;
+  }
+  .back-main-page-btn {
+    font-family: IRANSans;
+  }
+}
+
+@include breakpoint(1113px) {
+  .back-main-page-btn {
+    font-size: 11px;
+  }
+}

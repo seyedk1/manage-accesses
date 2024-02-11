@@ -8,6 +8,7 @@ import {
 export const useAccessManagementStore = defineStore("accessManagement", {
   state: () => ({
     selectedPanel: 1,
+    token: localStorage.getItem("token") || "",
     selectedCategories: [],
     panels: [],
     categories: [],
@@ -18,18 +19,42 @@ export const useAccessManagementStore = defineStore("accessManagement", {
       active: false,
       actionsId: [],
     },
+    loading: false,
   }),
 
   getters: {
+    get_token: (state) => state.token,
     get_selected_panel: (state) => state.selectedPanel,
     get_selected_categories: (state) => state.selectedCategories,
     get_panels: (state) => state.panels,
     get_categories: (state) => state.categories,
     get_actions: (state) => state.actions,
     get_role_paylod: (state) => state.rolePaylod,
+    get_loading: (state) => state.loading,
   },
 
   actions: {
+    toggle_loading_action() {
+      this.loading = !this.loading;
+    },
+    async login_action(username) {
+      const token = await `${username}_static_token_${Date.now()}`;
+      localStorage.setItem("token", token);
+      return true;
+    },
+
+    async clean_role_paylod_action() {
+      this.rolePaylod = {
+        name: "",
+        description: "",
+        active: false,
+        actionsId: [],
+      };
+      this.selectedPanel = 1;
+      this.selectedCategories = [];
+      this.actions = [];
+    },
+
     filter_level_access_action(obj) {
       console.log("{levelAccess, actionData}: ", obj);
       console.log("just levelAccess: ", JSON.parse(obj).levelAccess);
