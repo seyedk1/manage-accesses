@@ -1,4 +1,5 @@
-@import "@/assets/sass/variable.scss";
+@import "@/assets/sass/variable";
+@import "@/assets/sass/media";
 
 .down-page-content {
   .parent-panel-box--categories-box {
@@ -28,6 +29,41 @@
           right: 9.6em;
           margin-top: -16px;
         }
+      }
+    }
+  }
+}
+
+/* responsive */
+
+@include breakpoint(483px) {
+  .parent-panel-box {
+    .each-panel-box {
+      padding-left: 1em !important;
+
+      .triangle {
+        right: 3.6em !important;
+      }
+    }
+  }
+}
+
+@include breakpoint(400px) {
+  .parent-panel-box {
+    flex-direction: row !important;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+
+    .each-panel-box {
+      margin: 10px;
+      max-width: 33.33%;
+
+      &:not(:first-child) {
+        margin: 0;
+      }
+
+      .triangle {
+        display: none;
       }
     }
   }

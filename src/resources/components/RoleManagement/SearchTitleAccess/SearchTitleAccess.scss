@@ -1,4 +1,5 @@
 @import "@/assets/sass/variable";
+@import "@/assets/sass/media";
 
 .down-page-content {
   .parent-panel-box--categories-box {
@@ -48,5 +49,19 @@
     }
 
     //end parent-categories-box
+  }
+}
+
+/* responsive */
+@include breakpoint(1400px) {
+  .parent-categories-box {
+    margin-right: -2em !important;
+    margin-left: 0em !important;
+  }
+}
+
+@include breakpoint(400px){
+  .parent-categories-box{
+    margin-right: 0 !important;
   }
 }
