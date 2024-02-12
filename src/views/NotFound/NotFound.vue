@@ -14,7 +14,7 @@
       class="my-3 back-main-page-btn"
       color="#3e2356"
       @click="$router.push({ name: 'addRole' })"
-      >برگشت به صفحه افزودن نقش</v-btn
+      >برگشت به صفحه قبل</v-btn
     >
   </div>
 </template>

@@ -34,16 +34,17 @@ export const useAccessManagementStore = defineStore("accessManagement", {
   },
 
   actions: {
+    /* start helpers action function */
+    /* I used these helpers function because
+     they need to use theses state that are defined in useAccessManagementStore */
+
     toggle_loading_action() {
       this.loading = !this.loading;
     },
-    async login_action(username) {
-      const token = await `${username}_static_token_${Date.now()}`;
-      localStorage.setItem("token", token);
-      return true;
-    },
 
-    async clean_role_paylod_action() {
+    /* clear data after a role save in DB for have better UX so user can
+     add a new role immediately after a role added */
+    clean_role_paylod_action() {
       this.rolePaylod = {
         name: "",
         description: "",
@@ -55,17 +56,16 @@ export const useAccessManagementStore = defineStore("accessManagement", {
       this.actions = [];
     },
 
+    // handle access by user selected access in group radio button to save in DB
     filter_level_access_action(obj) {
-      console.log("{levelAccess, actionData}: ", obj);
-      console.log("just levelAccess: ", JSON.parse(obj).levelAccess);
       const filteredActions = JSON.parse(obj).actionData.filter(
         (action) => action.level >= JSON.parse(obj).levelAccess
       );
-      console.log("res bade filter: ", filteredActions);
       let actionsId = [];
       filteredActions.map((el) => actionsId.push(el._id));
       return actionsId;
     },
+
     set_select_panel_action(productId) {
       return (this.selectedPanel = productId);
     },
@@ -74,76 +74,8 @@ export const useAccessManagementStore = defineStore("accessManagement", {
       return (this.selectedCategories = categoriesId);
     },
 
-    async get_products_action() {
-      try {
-        const { data: panelsData } = await getAllPanels();
-        this.panels = panelsData;
-        return panelsData;
-      } catch (err) {
-        console.log("err in get_products_action: ", err);
-        return err;
-      }
-    },
-    async get_categories_action(productId) {
-      try {
-        const { data: categoriesData } = await getAllCategories();
-        console.log("daataa: ", { categoriesData, productId });
-        this.categories = categoriesData.filter(
-          (category) => category.productId == productId
-        );
-        return this.categories;
-      } catch (err) {
-        console.log("err in get_categories_action: ", err);
-        return err;
-      }
-    },
-
-    async get_actions_action(categoriesId) {
-      try {
-        console.log("categoriesId chiye toosh: ", categoriesId);
-        if (categoriesId == "[]") {
-          console.log("mige hichi too araye nist");
-          this.actions = [];
-        } else {
-          const { data: actionsData } = await getAllActions();
-          console.log("actions_action: ", {
-            actionsData,
-            categoriesId: JSON.parse(categoriesId),
-          });
-          let actionsWithoutSort = [];
-          let categoryName = "";
-          actionsData.filter((obj) => {
-            // Check if product._id matches the target productId
-            // const isProductIdMatch = obj.product._id == this.selectedPanel;
-            // console.log('is productId match? ', isProductIdMatch)
-
-            // Check if category is in the array of categoriesId
-            const isCategoryMatch = JSON.parse(categoriesId).some((el) => {
-              console.log("compare: ", el.value);
-              console.log("compare: ", obj.category);
-              if (el.value == obj.category) {
-                console.log("nameee: ", el.name);
-                categoryName = el.name;
-              }
-              return el.value == obj.category;
-            });
-
-            console.log("isCategoryMatch chi: ", isCategoryMatch);
-            console.log("-----------------------------");
-
-            if (isCategoryMatch) {
-              console.log("ok bud: ", obj);
-              actionsWithoutSort.push({ ...obj, categoryName });
-            }
-          });
-          return actionsWithoutSort;
-        }
-      } catch (err) {
-        console.log("err in get_actions_action: ", err);
-        return err;
-      }
-    },
-
+    /* groupBy activities by category Name as we must 
+    display each group's category Name in order to display access. */
     mix_items_action(array) {
       const transformedArray = array.reduce((acc, obj) => {
         const existingCategory = acc.find(
@@ -158,7 +90,6 @@ export const useAccessManagementStore = defineStore("accessManagement", {
             level: obj.level,
             name: obj.name,
           });
-          // existingCategory.actionsData.sort((a, b) => b.level - a.level);
         } else {
           acc.push({
             category: obj.category,
@@ -174,15 +105,81 @@ export const useAccessManagementStore = defineStore("accessManagement", {
 
       return transformedArray;
     },
+    /* end helpers action function */
+
+    /* start action function for connected to DB */
+    async login_action(username) {
+      const token = await `${username}_static_token_${Date.now()}`;
+      localStorage.setItem("token", token);
+      return true;
+    },
+
+    async get_products_action() {
+      try {
+        const { data: panelsData } = await getAllPanels();
+        this.panels = panelsData;
+        return panelsData;
+      } catch (err) {
+        console.log("err in get_products_action: ", err);
+        return err;
+      }
+    },
+
+    async get_categories_action(productId) {
+      try {
+        const { data: categoriesData } = await getAllCategories();
+        this.categories = categoriesData.filter(
+          (category) => category.productId == productId
+        );
+        return this.categories;
+      } catch (err) {
+        console.log("err in get_categories_action: ", err);
+        return err;
+      }
+    },
+
+    async get_actions_action(categoriesId) {
+      try {
+        if (categoriesId == "[]") {
+          this.actions = [];
+        } else {
+          const { data: actionsData } = await getAllActions();
+
+          let actionsWithoutSort = [];
+          let categoryName = "";
+          actionsData.filter((obj) => {
+            // Check if category is in the array of categoriesId
+            const isCategoryMatch = JSON.parse(categoriesId).some((el) => {
+              if (el.value == obj.category) {
+                categoryName = el.name;
+              }
+              return el.value == obj.category;
+            });
+
+            if (isCategoryMatch) {
+              actionsWithoutSort.push({ ...obj, categoryName });
+            }
+          });
+          return actionsWithoutSort;
+        }
+      } catch (err) {
+        console.log("err in get_actions_action: ", err);
+        return err;
+      }
+    },
 
     async add_role_paylod_action(data) {
       try {
-        const res = await addRoleToDb(data);
-        console.log("result for add role in action: ", res);
+        await addRoleToDb(data);
         return true;
       } catch (err) {
         console.log("err in add_role_paylod: ", err);
       }
     },
+
+    logout_action() {
+      localStorage.removeItem("token");
+    },
+    /* end action function for connected to DB */
   },
 });

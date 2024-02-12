@@ -1,9 +1,12 @@
-import RoleManagementHeader from "@/resources/components/RoleManagement/RoleManagementHeader/RoleManagementHeader.vue";
-import PanelManagement from "@/resources/components/RoleManagement/PanelManagement/PanelManagement.vue";
-import SearchTitleAccess from "@/resources/components/RoleManagement/SearchTitleAccess/SearchTitleAccess.vue";
-import ShowCategoriesDetails from "@/resources/components/RoleManagement/ShowCategoriesDetails/ShowCategoriesDetails.vue";
+import {
+  RoleManagementHeader,
+  PanelManagement,
+  SearchTitleAccess,
+  ShowCategoriesDetails,
+} from "@/resources/components";
 import { useAccessManagementStore } from "@/stores/accessManagementStore";
 import { onMounted, ref } from "vue";
+import { useRouter } from "vue-router";
 export default {
   components: {
     RoleManagementHeader,
@@ -14,6 +17,7 @@ export default {
 
   setup() {
     const store = useAccessManagementStore();
+    const router = useRouter();
 
     const {
       get_products_action,
@@ -21,6 +25,7 @@ export default {
       add_role_paylod_action,
       toggle_loading_action,
       clean_role_paylod_action,
+      logout_action,
     } = store;
 
     onMounted(async () => {
@@ -33,9 +38,7 @@ export default {
     const refreshKey = ref(0);
 
     const addRoleToDatabase = async () => {
-      console.log("addRoleToDatabase btn function: ");
-      const res = await add_role_paylod_action(store.get_role_paylod);
-      console.log("res after action done in addRoleToDatabase method: ", res);
+      await add_role_paylod_action(store.get_role_paylod);
     };
 
     const closeModal = (data) => {
@@ -44,11 +47,17 @@ export default {
       data.value = false;
     };
 
+    const logout = () => {
+      logout_action();
+      router.push({ name: "login" });
+    };
+
     return {
       store,
       addRoleToDatabase,
       closeModal,
       refreshKey,
+      logout,
     };
   },
 };

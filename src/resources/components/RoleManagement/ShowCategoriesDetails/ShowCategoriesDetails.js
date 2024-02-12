@@ -15,6 +15,7 @@ export default {
     let displayDetailsFlag = ref(Array(1).fill(false));
 
     const displayDetails = (index) => {
+      // for show access details
       displayDetailsFlag.value[index] = !displayDetailsFlag.value[index];
     };
 
@@ -28,21 +29,17 @@ export default {
 
     let indexOfRadioClicked;
     const handleRadioClick = (index) => {
-      console.log(`Radio button clicked in group ${index}`);
+      // got index for watch which item in array is changed
       indexOfRadioClicked = index;
     };
 
     let allActionsIdWithIndex = [[]];
     watch(selectedRadioBtns.value, async (newValues) => {
-      console.log(
-        `new value are ${JSON.stringify(newValues[indexOfRadioClicked])}`
-      );
-      console.log("indexOfRadioClicked in watch: ", indexOfRadioClicked);
       const data = filter_level_access_action(
         JSON.stringify(newValues[indexOfRadioClicked])
       );
-      console.log("natije filter: ", data);
       allActionsIdWithIndex[0][indexOfRadioClicked] = data;
+      // I use flat(Infinity) to remove all bracets in array because the result must be like: ["1","2","3"]
       store.get_role_paylod.actionsId = allActionsIdWithIndex.flat(Infinity);
     });
 
