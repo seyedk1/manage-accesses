@@ -14,7 +14,7 @@
     <div
       class="show-selected-categories-title d-flex flex-grow-1 align-items-center"
     >
-      <span> {{ item.categoryName }} </span>
+      <span class="category-name-style"> {{ item.categoryName }} </span>
       <svg-icon
         type="mdi"
         :path="chevronPath"
@@ -28,6 +28,7 @@
         color="#3e2356"
         v-model="selectedRadioBtns[i]"
         hide-details
+        class="parent-radio-group"
       >
         <v-radio
           :value="{ levelAccess: radioBtn.value, actionData: item.actionsData }"
@@ -50,7 +51,7 @@
         <li
           v-for="(action, j) in item.actionsData"
           :key="j"
-          class="li-style col-md-4"
+          class="li-style col-sm-4 col-3"
         >
           {{ action.name }}
         </li>

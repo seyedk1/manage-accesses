@@ -10,7 +10,6 @@
     <div class="parent-text-inputs d-flex">
       <v-text-field
         density="compact"
-        label="نام نقش"
         v-model="store.get_role_paylod.name"
         variant="outlined"
         single-line
@@ -18,10 +17,13 @@
         bg-color="#f9f9f9"
         color="#ced1d4"
         base-color="#ced1d4"
-      ></v-text-field>
+      >
+        <template v-slot:label>
+          <span style="font-size: 14px"> نام نقش</span>
+        </template>
+      </v-text-field>
       <v-text-field
         density="compact"
-        label="توضیحات"
         v-model="store.get_role_paylod.description"
         single-line
         variant="outlined"
@@ -29,7 +31,11 @@
         bg-color="#f9f9f9"
         color="#ced1d4"
         base-color="#ced1d4"
-      ></v-text-field>
+      >
+        <template v-slot:label>
+          <span style="font-size: 14px"> توضیحات</span>
+        </template>
+      </v-text-field>
     </div>
   </div>
 

@@ -12,13 +12,15 @@ export default defineConfig({
     },
   },
 
-  // server: {
-  //   proxy: {
-  //     "/api": {
-  //       target: "http://localhost:9000", // Replace with your server's address
-  //       changeOrigin: true,
-  //       rewrite: (path) => path.replace(/^\/api/, ""),
-  //     },
-  //   },
-  // },
+  server: {
+    host: "0.0.0.0",
+    port: 5173, // Adjust the port number as needed
+    // proxy: {
+    //   "/api": {
+    //     target: "http://localhost:9000", // Replace with your server's address
+    //     changeOrigin: true,
+    //     rewrite: (path) => path.replace(/^\/api/, ""),
+    //   },
+    // },
+  },
 });

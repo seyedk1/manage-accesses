@@ -1,4 +1,6 @@
 @import "@/assets/sass/variable";
+@import "@/assets/sass/media";
+
 .add-role-page-container {
   .up-page-content {
     .parent-title-icon--text-input {
@@ -6,6 +8,7 @@
 
       .parent-title-icon {
         flex: 0.3;
+        align-items: center;
         color: $iron;
 
         .icon-style {
@@ -16,6 +19,8 @@
         }
 
         .title-style {
+          margin-bottom: 0;
+
           .active {
             color: $bossanova;
           }
@@ -25,6 +30,73 @@
       .parent-text-inputs {
         flex: 0.6;
         margin-top: 1em;
+      }
+    }
+  }
+}
+
+/* responsive */
+@include breakpoint(1085px) {
+  .add-role-page-container {
+    .up-page-content {
+      .parent-title-icon--text-input {
+        flex: 1 !important;
+      }
+    }
+  }
+}
+
+@include breakpoint(900px) {
+  .title-style {
+    font-size: 14px;
+  }
+
+  .parent-text-inputs {
+    .text-input-style {
+      font-size: 14px;
+    }
+  }
+}
+
+@include breakpoint(800px) {
+  .add-role-page-container {
+    .up-page-content {
+      .parent-title-icon--text-input {
+        align-items: flex-start !important;
+        flex-direction: column;
+
+        .parent-text-inputs {
+          width: 90%;
+        }
+      }
+    }
+  }
+}
+
+@include breakpoint(483px) {
+  .add-role-page-container {
+    .up-page-content {
+      .parent-title-icon--text-input {
+        .parent-text-inputs {
+          flex-direction: column;
+        }
+      }
+    }
+  }
+}
+
+@include breakpoint(400px){
+  .add-role-page-container{
+    .up-page-content{
+      flex-direction: column !important;
+
+      .parent-title-icon--text-input{
+        width: 100%;
+      }
+
+      .parent-toggle-activate{
+        display: flex !important;
+        align-self: flex-start;
       }
     }
   }
