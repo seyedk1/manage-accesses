@@ -14,16 +14,10 @@ export const routes = [
     name: "login",
     component: LoginView,
     beforeEnter(to, from, next) {
-      console.log("to, from: ", { to, from });
       const token = localStorage.getItem("token");
 
-      if (!!token) {
-        console.log("chishod: ", !!token);
-        next({ name: "addRole" });
-      } else {
-        console.log("else yani: ", !!token);
-        next();
-      }
+      if (!!token) next({ name: "addRole" });
+      else next();
     },
   },
 

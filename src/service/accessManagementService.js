@@ -1,30 +1,38 @@
 import axios from "axios";
-const SERVER_URL = "http://localhost:9000";
 
 // @desc get all panels
 // @route GET http://localhost:9000/products
-export const getAllPanels = () => {
-  const url = `${SERVER_URL}/products`;
-  return axios.get(url);
+export const getAllPanels = async () => {
+  return await axios({
+    url: "products",
+    method: "GET",
+  });
 };
 
 // @desc get categories
 // @route GET http://localhost:9000/categoriesTree
-export const getAllCategories = () => {
-  const url = `${SERVER_URL}/categoriesTree`;
-  return axios.get(url);
+export const getAllCategories = async () => {
+  return await axios({
+    url: "categoriesTree",
+    method: "GET",
+  });
 };
 
 // @desc get actions
 // @route GET http://localhost:9000/actions
-export const getAllActions = () => {
-  const url = `${SERVER_URL}/actions`;
-  return axios.get(url);
+export const getAllActions = async () => {
+  return await axios({
+    url: "actions",
+    method: "GET",
+  });
 };
 
 // @desc add role to database
 // @route POST http://localhost:9000/addRolePaylod
-export const addRoleToDb = (data) => {
-  const url = `${SERVER_URL}/addRolePaylod`;
-  return axios.post(url, data);
+export const addRoleToDb = async (data) => {
+  return await axios({
+    url: "addRolePaylod",
+    method: "POST",
+    data,
+  });
 };

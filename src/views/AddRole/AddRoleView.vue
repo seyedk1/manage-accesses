@@ -23,7 +23,10 @@
         <div class="parent-panel-box--categories-box d-flex">
           <PanelManagement :products="store.get_panels" />
 
-          <SearchTitleAccess :categories="store.get_categories" :key="refreshKey" />
+          <SearchTitleAccess
+            :categories="store.get_categories"
+            :key="refreshKey"
+          />
         </div>
         <!--end parent-panel-box--categories-box-->
 
@@ -74,7 +77,11 @@
             </v-dialog>
             <!--end modal-->
 
-            <v-btn class="btn-style mx-1" color="#3e2356" variant="outlined"
+            <v-btn
+              class="btn-style mx-1"
+              color="#3e2356"
+              variant="outlined"
+              @click="logout()"
               >بازگشت</v-btn
             >
           </div>

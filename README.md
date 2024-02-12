@@ -6,7 +6,8 @@
 Two terminals are required to operate the project: one for the server and another for the viewer.
 In order to connect to JSON data and perform CRUD operations on the data you provided, I utilised JSON-Server. Thus, I created a json file out of the four json files you supplied me.
 You may test each page on a variety of devices and it will all be responsive. For this reason, I set up a host on port 5137 in the vite.config.js file with the IP address 0.0.0.0 so you can test on a real device if you'd like.
-I thought that if the user didn't have any token, for instance, after logging in, if he manually cleared site data from the dev tools storage, he would be redirected to the login page where he would have to input his username and password in order to create an account.
+I thought that if the user didn't have any token, for instance, after logging in, if he manually cleared site data from the dev tools storage, he would be redirected to the login page where he would have to input his username and password in order to create an account. In addition, I utilised an interceptor to send the user to the login page instead of send request to server when he intended to send a request but didn't have any tokens.
+After user added a role to database, I clear all data in page for have better UX.
 
 ## Project Setup
 
